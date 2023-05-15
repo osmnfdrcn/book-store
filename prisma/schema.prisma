@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+
+
+model Book {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description   String
+  image         String
+  authorId      String @db.ObjectId
+  author        Author   @relation(fields: [authorId], references: [id])
+  publisherId   String @db.ObjectId
+  publisher     Publisher @relation(fields: [publisherId], references: [id])
+  genreId       String @db.ObjectId
+  genre         Genre  @relation(fields: [genreId], references: [id])
+  languageId    String @db.ObjectId
+  language      Language @relation(fields: [languageId], references: [id])
+  price         Int
+  stock         Int
+  slug          String @unique
+}
+
+model Author {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String @unique
+  image         String
+  slug          String @unique
+  bio           String
+  books         Book[]
+}
+
+model Publisher {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String @unique
+  slug          String @unique
+  books         Book[]
+}
+
+model Genre {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String @unique
+  books         Book[]
+}
+
+model Language {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String @unique
+  books         Book[]
+}
+
+
+
+
+model User {
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  image           String?
+  hashedPassword  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  accounts Account[]
+}
+
+
+
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String   @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.String
+  access_token       String?  @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.String
+  session_state      String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
