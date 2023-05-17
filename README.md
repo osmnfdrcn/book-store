@@ -15,13 +15,13 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshotss
 
-![Screenshot](/screenshots/home.png)
-![Screenshot](/screenshots/home-m-png)
-![Screenshot](/screenshots/home-m-filter.png)
-![Screenshot](/screenshots/filter.png)
-![Screenshot](/screenshots/book-page.png)
-![Screenshot](/screenshots/book-page-m.png)
-![Screenshot](/screenshots/author.png)
-![Screenshot](/screenshots/author-m.png)
-![Screenshot](/screenshots/cart.png)
-![Screenshot](/screenshots/cart-m.png)
+![Screenshot](/app/screenshots/home.png)
+![Screenshot](/app/screenshots/home-m-png)
+![Screenshot](/app/screenshots/home-m-filter.png)
+![Screenshot](/app/screenshots/filter.png)
+![Screenshot](/app/screenshots/book-page.png)
+![Screenshot](/app/screenshots/book-page-m.png)
+![Screenshot](/app/screenshots/author.png)
+![Screenshot](/app/screenshots/author-m.png)
+![Screenshot](/app/screenshots/cart.png)
+![Screenshot](/app/screenshots/cart-m.png)
