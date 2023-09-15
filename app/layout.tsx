@@ -1,7 +1,9 @@
-import "./globals.css";
+import Navbar from "@/components/layout/navbar";
+import Search from "@/components/modules/search";
+import { StateProvider } from "@/providers/StateProvider";
+import ToasterProvider from "@/providers/ToasterProvider";
 import { Inter } from "next/font/google";
-import Navbar from "./components/ui/navbar";
-import ToasterProvider from "@/app/providers/ToasterProvider";
+import "./globals.css";
 
 const inter = Inter({
   weight: "400",
@@ -21,9 +23,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToasterProvider />
-        <Navbar />
-        <div className="pb-20 pt-[80px]">{children}</div>
+        <StateProvider>
+          <ToasterProvider />
+          <Search />
+          <Navbar />
+          <div className="pb-20 pt-[120px]">{children}</div>
+        </StateProvider>
       </body>
     </html>
   );

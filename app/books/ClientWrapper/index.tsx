@@ -1,8 +1,9 @@
 "use client";
-import { Button } from "@/app/components/base";
-import { NoResult, Title } from "@/app/components/ui";
-import useCartStore from "@/app/hooks/useCartStore";
-import { IBook } from "@/app/types";
+import { Button } from "@/components/base";
+import { NoResult, Title } from "@/components/ui";
+import { addToCart, setShowCart } from "@/store/slices/cartSlice";
+import { useAppDispatch } from "@/store/store";
+import { IBook } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,15 +20,17 @@ type LastVisited = { id: string; title: string; image: string; slug: string };
 const ClientWrapper = ({ book }: Props) => {
   const [quantity, setQuantity] = useState(1);
   const [lastVisited, setLastVisited] = useState<LastVisited[]>([]);
-  const { addToCart }: any = useCartStore();
   const router = useRouter();
   const cookies = new Cookies();
+  const dispatch = useAppDispatch();
 
   if (!book) {
     return <NoResult title="Aradiginiz sayfa bulunamadi." />;
   }
 
-  const { id, title, image, slug } = book;
+  const { id, title, image, slug, price, stock } = book;
+  console.log({ book });
+
   useEffect(() => {
     const lastVisited = cookies
       .get("lastVisited")
@@ -53,9 +56,9 @@ const ClientWrapper = ({ book }: Props) => {
   }, []);
 
   const handleAddToCart = () => {
-    addToCart(book, quantity);
+    dispatch(addToCart({ id, title, image, slug, price, stock, quantity }));
+    dispatch(setShowCart(true));
     toast.success("Urun sepete eklenmistir.");
-    setTimeout(() => router.push("cart"), 1000);
   };
 
   return (
@@ -118,7 +121,7 @@ const ClientWrapper = ({ book }: Props) => {
         <Title text="SON ZIYARET EDILENLER" />
         <div className="flex flex-wrap items-center justify-center gap-2 ">
           {lastVisited?.map((l) => (
-            <Link href={`books/${l.slug}`}>
+            <Link href={`books/${l.slug}`} key={l.id}>
               <Image src={l.image} width={100} height={165} alt={l.title} />
             </Link>
           ))}

@@ -1,7 +1,7 @@
-import { Wrapper } from "@/app/components/layout";
-import { NoResult, Title } from "@/app/components/ui";
-import getAuthorBySlug from "@/app/helpers/getAuthorBySlug";
-import { IAuthor, IBook } from "@/app/types";
+import { Wrapper } from "@/components/layout";
+import { NoResult, Title } from "@/components/ui";
+import getAuthorBySlug from "@/helpers/getAuthorBySlug";
+import { IAuthor, IBook } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 

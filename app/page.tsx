@@ -1,7 +1,7 @@
-import { Wrapper } from "./components/layout";
-import { Home } from "./components/ui";
-import getBooks from "./helpers/getBooks";
-import { IBook } from "./types";
+import { Wrapper } from "@/components/layout";
+import { Home } from "@/components/ui";
+import getBooks from "@/helpers/getBooks";
+import { IBook } from "@/types";
 
 type Props = {
   searchParams: {
