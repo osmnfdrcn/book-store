@@ -3,11 +3,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
-import { Wrapper } from "@/components/layout";
 import { Button } from "@/components/base";
 import { Title } from "@/components/ui";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { updateCart } from "@/store/slices/cartSlice";
+import Wrapper from "@/components/layout/wrapper";
 type Props = {};
 
 const Cart = (props: Props) => {

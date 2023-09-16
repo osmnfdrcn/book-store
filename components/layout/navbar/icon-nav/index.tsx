@@ -1,24 +1,12 @@
 "use client";
-import { setShowSearchBar } from "@/store/slices/appSlice";
-import { setShowCart } from "@/store/slices/cartSlice";
-import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
 import CartMenu from "./cart-menu";
+import useIconNav from "./useIconNav";
 
-const Icons = () => {
-  const dispatch = useAppDispatch();
-  const { items, showCart } = useAppSelector((store: RootState) => store.cart);
-
-  const handleSearchClick = () => dispatch(setShowSearchBar(true));
-  const handleShowCartMenu = () => {
-    dispatch(setShowCart(!showCart));
-  };
-  const numberOfCartItems = items?.reduce(
-    (t: number, i: any) => (t += i.quantity),
-    0
-  );
-
+const IconNav = () => {
+  const { handleSearchClick, handleShowCartMenu, numberOfCartItems } =
+    useIconNav();
   return (
     <div className="h-full flex items-center justify-between gap-4">
       <div
@@ -41,4 +29,4 @@ const Icons = () => {
   );
 };
 
-export default Icons;
+export default IconNav;

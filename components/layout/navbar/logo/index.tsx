@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-type Props = {};
-
-const Logo = (props: Props) => {
+const Logo = () => {
   return (
     <div className="h-full flex items-center justify-start">
       <Link href="/">

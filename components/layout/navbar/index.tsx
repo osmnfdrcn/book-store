@@ -1,5 +1,5 @@
 import Wrapper from "../wrapper";
-import Icons from "./icons";
+import IconNav from "./icon-nav";
 import Logo from "./logo";
 
 const Navbar = () => {
@@ -8,7 +8,7 @@ const Navbar = () => {
       <Wrapper>
         <div className="flex items-center justify-between h-full ">
           <Logo />
-          <Icons />
+          <IconNav />
         </div>
       </Wrapper>
     </div>

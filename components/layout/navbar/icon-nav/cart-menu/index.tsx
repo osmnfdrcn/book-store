@@ -8,23 +8,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import useCartMenu from "./useCartMenu";
 
 const CartMenu = () => {
-  const router = useRouter();
-  const ref = useRef(null);
-  const { items, showCart } = useAppSelector((store: RootState) => store.cart);
-  const dispatch = useAppDispatch();
-  const handleClickOutside = () => dispatch(setShowCart(false));
-  useOnClickOutside(ref, handleClickOutside);
-
-  const total = items.reduce(
-    (t: number, i: any) => (t += i.price * i.quantity),
-    0
-  );
-  const handleCartClick = () => {
-    dispatch(setShowCart(false));
-    router.push("cart");
-  };
+  const { showCart, total, handleCartClick, items, ref } = useCartMenu();
   if (!showCart) {
     return null;
   }
