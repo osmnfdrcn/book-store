@@ -1,13 +1,8 @@
 "use client";
 
-import { Button } from "@/components/base";
-import { setShowCart } from "@/store/slices/cartSlice";
-import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
+import Button from "@/components/ui/button";
 import { CartItem } from "@/types";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
-import { useOnClickOutside } from "usehooks-ts";
 import useCartMenu from "./useCartMenu";
 
 const CartMenu = () => {

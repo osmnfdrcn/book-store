@@ -1,7 +1,8 @@
-import { IBook } from "@/types";
-import getBookBySlug from "@/helpers/getBookBySlug";
-import ClientWrapper from "../ClientWrapper";
 import Wrapper from "@/components/layout/wrapper";
+import Book from "@/components/modules/book";
+import NoResult from "@/components/common/noResult";
+import getBookBySlug from "@/helpers/getBookBySlug";
+import { IBook } from "@/types";
 
 type Props = {
   slug?: string;
@@ -9,10 +10,12 @@ type Props = {
 
 const BookDetail = async ({ params }: { params: Props }) => {
   const book = await getBookBySlug(params);
-
+  if (!book) {
+    return <NoResult title="Aradiginiz sayfa bulunamadi." />;
+  }
   return (
     <Wrapper>
-      <ClientWrapper book={book as IBook} />
+      <Book book={book as IBook} />
     </Wrapper>
   );
 };

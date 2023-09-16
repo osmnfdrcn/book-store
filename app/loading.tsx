@@ -1,5 +1,4 @@
 import React from "react";
-import Skeleton from "@/components/layout/skeleton";
 import Spinner from "@/components/layout/spinner";
 import Wrapper from "@/components/layout/wrapper";
 

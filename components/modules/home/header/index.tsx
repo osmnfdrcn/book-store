@@ -1,6 +1,6 @@
-import { Button } from "@/components/base";
 import { BsFilterLeft } from "react-icons/bs";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import Button from "@/components/ui/button";
 type Props = {
   showFilterBar: boolean;
   setShowFilterBar: (s: boolean) => void;

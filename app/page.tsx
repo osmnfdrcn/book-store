@@ -1,5 +1,5 @@
 import Wrapper from "@/components/layout/wrapper";
-import { Home } from "@/components/ui";
+import Home from "@/components/modules/home";
 import getBooks from "@/helpers/getBooks";
 import { IBook } from "@/types";
 

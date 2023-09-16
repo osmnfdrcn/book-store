@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import React from "react";
-import Skeleton from "../components/layout/skeleton";
 import Wrapper from "../components/layout/wrapper";
 
 type Props = {};
@@ -28,11 +27,7 @@ const AuthorCratePage = async (props: Props) => {
       .catch((error) => console.log("Encountered with an error"));
   };
 
-  return (
-    <Wrapper>
-      <Skeleton page="home" />
-    </Wrapper>
-  );
+  return <Wrapper>iop</Wrapper>;
 };
 
 export default AuthorCratePage;

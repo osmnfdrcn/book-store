@@ -1,7 +1,7 @@
 "use client";
 
+import Button from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Button } from "../../base";
 interface EmptyStateProps {
   title?: string;
   subtitle?: string;

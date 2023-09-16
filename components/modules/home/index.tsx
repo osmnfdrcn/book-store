@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IBook } from "../../../types";
-import NoResult from "../noResult";
+import NoResult from "../../common/noResult";
 import BookCard from "./bookCard";
 import Filters from "./filters";
 import Header from "./header";

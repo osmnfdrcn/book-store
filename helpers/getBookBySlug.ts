@@ -13,8 +13,17 @@ export default async function getBookBySlug(params: IParams) {
         slug,
       },
       include: {
-        author: true,
-        publisher: true,
+        author: {
+          select: {
+            name: true,
+            slug: true,
+          },
+        },
+        publisher: {
+          select: {
+            name: true,
+          },
+        },
         language: true,
         genre: true,
       },
