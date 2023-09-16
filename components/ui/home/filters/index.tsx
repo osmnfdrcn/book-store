@@ -54,6 +54,7 @@ const Filters = ({ books, jump, showFilterBar }: Props) => {
     },
     []
   );
+
   const handleGenreClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleFilterClick(e.target.value, setGenreFilter);
   };

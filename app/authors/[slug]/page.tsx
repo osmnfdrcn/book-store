@@ -1,4 +1,4 @@
-import { Wrapper } from "@/components/layout";
+import Wrapper from "@/components/layout/wrapper";
 import { NoResult, Title } from "@/components/ui";
 import getAuthorBySlug from "@/helpers/getAuthorBySlug";
 import { IAuthor, IBook } from "@/types";

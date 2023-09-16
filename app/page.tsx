@@ -1,4 +1,4 @@
-import { Wrapper } from "@/components/layout";
+import Wrapper from "@/components/layout/wrapper";
 import { Home } from "@/components/ui";
 import getBooks from "@/helpers/getBooks";
 import { IBook } from "@/types";

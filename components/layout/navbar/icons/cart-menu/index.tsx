@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/base";
-import { Wrapper } from "@/components/layout";
 import { setShowCart } from "@/store/slices/cartSlice";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { CartItem } from "@/types";

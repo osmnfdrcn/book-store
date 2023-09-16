@@ -1,5 +1,4 @@
 import Wrapper from "../wrapper";
-import CartMenu from "./cart-menu";
 import Icons from "./icons";
 import Logo from "./logo";
 

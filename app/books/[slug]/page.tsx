@@ -1,7 +1,7 @@
-import { Wrapper } from "@/components/layout";
 import { IBook } from "@/types";
 import getBookBySlug from "@/helpers/getBookBySlug";
 import ClientWrapper from "../ClientWrapper";
+import Wrapper from "@/components/layout/wrapper";
 
 type Props = {
   slug?: string;

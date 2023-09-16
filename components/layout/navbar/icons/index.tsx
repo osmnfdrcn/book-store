@@ -4,7 +4,7 @@ import { setShowCart } from "@/store/slices/cartSlice";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiSearchLine } from "react-icons/ri";
-import CartMenu from "../cart-menu";
+import CartMenu from "./cart-menu";
 
 const Icons = () => {
   const dispatch = useAppDispatch();
