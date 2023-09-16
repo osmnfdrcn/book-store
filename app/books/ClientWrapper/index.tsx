@@ -63,7 +63,7 @@ const ClientWrapper = ({ book }: Props) => {
 
   return (
     <div className="flex flex-col items-center justify-start  w-full sm:w-2/3 mx-auto mt-[45px] pt-2 gap-2">
-      <div className="aspect-square w-full h-[250px]  relative overflow-hidden">
+      <div className="relative aspect-square w-full h-[250px]   overflow-hidden">
         <Image
           src={book?.image!}
           fill

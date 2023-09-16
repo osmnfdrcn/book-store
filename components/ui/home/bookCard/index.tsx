@@ -1,31 +1,23 @@
 import { IBook } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = { book: IBook };
 
 const BookCard = ({ book }: Props) => {
   return (
-    <div className="p-3 bg-slate-50  max-h-[300px] hover:shadow-2xl transition  ease-in-out hover:scale-105    cursor-pointer flex flex-col items-center justify-center">
-      <div className="aspect-square w-[125px] h-[200px] relative overflow-hidden">
-        <Image
-          src={book.image}
-          alt={book.title}
-          fill
-          className="object-contain w-full"
-        />
+    <div className="relative  h-auto transition duration-200 bg-slate-50 brightness-100 hover:brightness-95 hover:scale-105  flex flex-col shadow-sm items-center justify-center">
+      <div className="relative bg-no-repeat bg-center h-[200px] w-[150px] md:h-[200px] cursor-pointer transition delay-100 ">
+        <Image src={book.image} alt={book.title} fill />
       </div>
-      <div>
-        <div className=" pt-5 flex flex-col  items-center justify-center">
-          <p className="text-sm text-slate-600 text-center min-h-[40px]">
-            {book.title}
-          </p>
 
-          {!!book.stock ? (
-            <p className="text-sm text-slate-900">{book.price}TL</p>
-          ) : (
-            <p className="text-red-500 text-sm text-right">STOKTA YOK</p>
-          )}
-        </div>
+      <div className="flex flex-col justify-between  items-center gap-1 py-4 px-2 h-[90px]">
+        <p className="text-sm font-semibold text-center ">{book.title}</p>
+        {!!book.stock ? (
+          <p className="text-sm text-slate-900">{book.price}TL</p>
+        ) : (
+          <p className="text-red-500 text-sm text-right">STOKTA YOK</p>
+        )}
       </div>
     </div>
   );
