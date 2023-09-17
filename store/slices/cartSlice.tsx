@@ -1,7 +1,7 @@
 import { IBook } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Item = {
+export type Item = {
   id: string;
   title: string;
   image: string;
@@ -29,11 +29,8 @@ const appSlice = createSlice({
       state.showCart = payload;
     },
     addToCart: (state: CartState, { payload }: PayloadAction<Item>) => {
-      console.log(payload);
-
       const { id } = payload;
       const isItemInCartIndex = state.items.findIndex((i) => i.id === id);
-      console.log(payload);
 
       if (isItemInCartIndex >= 0) {
         state.items[isItemInCartIndex].quantity += payload.quantity;
@@ -46,6 +43,8 @@ const appSlice = createSlice({
       { payload }: PayloadAction<{ id: string; action: string }>
     ) => {
       const { id, action } = payload;
+      const index = state.items.findIndex((i) => i.id === id);
+
       const itemToUpdate = state.items.filter((i) => i.id === id)[0];
       const restItems = state.items.filter((i) => i.id !== id);
 
@@ -54,7 +53,8 @@ const appSlice = createSlice({
           itemToUpdate.quantity++;
           // itemToUpdate.stock--;
         }
-        state.items = [...restItems, itemToUpdate];
+        restItems.splice(index, 0, itemToUpdate);
+        state.items = [...restItems];
       }
       if (action === "decrease") {
         itemToUpdate.quantity !== 1
@@ -62,8 +62,9 @@ const appSlice = createSlice({
           : (state.items = [...restItems]);
       }
     },
+    reset: (state: CartState) => (state = initialState),
   },
 });
 
-export const { setShowCart, addToCart, updateCart } = appSlice.actions;
+export const { setShowCart, addToCart, updateCart, reset } = appSlice.actions;
 export default appSlice.reducer;

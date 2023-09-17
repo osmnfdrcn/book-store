@@ -23,20 +23,27 @@ const Counter = ({ book }: Props) => {
     <div className="w-full flex justify-center mt-6 text-sm gap-6 items-center">
       <div className="flex gap-4 items-center">
         <Button
-          variant="rounded"
-          icon={AiOutlineMinus}
           onClick={() => setQuantity((q: number) => q - 1)}
           disabled={quantity === 1}
-        />
+          className="w-8 h-8 rounded-full bg-slate-200 p-2 hover:bg-slate-300 duration-100 transition text-slate-800 font-bold"
+        >
+          <AiOutlineMinus size={18} />
+        </Button>
         {quantity}
         <Button
-          variant="rounded"
-          icon={AiOutlinePlus}
           onClick={() => setQuantity((q: number) => q + 1)}
           disabled={quantity >= stock}
-        />
+          className="w-8 h-8 rounded-full bg-slate-200 text-slate-800 font-bold p-2 hover:bg-slate-300 duration-100 transition"
+        >
+          <AiOutlinePlus size={18} />
+        </Button>
       </div>
-      <Button variant="primary" text="SEPETE EKLE" onClick={handleAddToCart} />
+      <Button
+        onClick={handleAddToCart}
+        className="bg-slate-800 hover:bg-slate-600 duration-100 transition  text-white px-2 py-2 text-sm font-semibold"
+      >
+        SEPETE EKLE
+      </Button>
     </div>
   );
 };

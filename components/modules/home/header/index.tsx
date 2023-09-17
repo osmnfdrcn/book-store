@@ -48,18 +48,21 @@ const Header = ({
           <Button
             onClick={() => prev()}
             disabled={currentPage === 1}
-            variant="rounded"
-            icon={GrPrevious}
-          />
+            className="w-8 h-8 rounded-full bg-slate-200 text-slate-800 font-bold p-2 hover:bg-slate-300 duration-100 transition"
+          >
+            <GrPrevious />
+          </Button>
+
           <span className="text-xs font-light ">
             {currentPage} / {maxPage}
           </span>
           <Button
             onClick={() => next()}
             disabled={currentPage === maxPage}
-            variant="rounded"
-            icon={GrNext}
-          />
+            className="w-8 h-8 rounded-full bg-slate-200 text-slate-800 font-bold p-2 hover:bg-slate-300 duration-100 transition"
+          >
+            <GrNext />
+          </Button>
         </div>
       </div>
     </div>

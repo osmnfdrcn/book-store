@@ -146,12 +146,19 @@ const Filters = ({ books, jump, showFilterBar }: Props) => {
   ];
 
   const buttonVariants = [
-    { id: 0, variant: "primary", onClick: handleSubmit, text: "ARA" },
+    {
+      id: 0,
+      onClick: handleSubmit,
+      text: "ARA",
+      style:
+        "w-full bg-rose-500 hover:bg-rose-600 transition duration-100 font-bold text-white py-1",
+    },
     {
       id: 1,
-      variant: "secondary",
       onClick: handleClearFilter,
       text: "SECIMLERI TEMIZLE",
+      style:
+        "w-full bg-slate-800 hover:bg-slate-700 transition duration-100s font-bold text-white py-1",
     },
   ];
 
@@ -181,11 +188,13 @@ const Filters = ({ books, jump, showFilterBar }: Props) => {
           {buttonVariants.map((b) => (
             <Button
               key={b.id}
-              variant={b.variant}
               onClick={b.onClick}
-              text={b.text}
+              loading={isLoading}
               disabled={isLoading}
-            />
+              className={b.style}
+            >
+              {b.text}
+            </Button>
           ))}
         </div>
       </div>

@@ -16,9 +16,11 @@ const NoResult = ({ title, subtitle }: EmptyStateProps) => {
         <p className="text-sm font-light text-slate-500">{title}</p>
         <Button
           variant="primary"
-          text="ANASAYFA"
           onClick={() => router.push("/")}
-        />
+          className="bg-slate-800 hover:bg-slate-600 duration-100 transition  text-white px-2 py-2 text-sm font-semibold"
+        >
+          ANASAYFA
+        </Button>
       </div>
     </div>
   );
