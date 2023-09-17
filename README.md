@@ -15,7 +15,7 @@ env dosyasina eklenmesi gerekenler:
 
 ## Tech-Stack
 
-- NextJS, Redux Toolkit, Tailwind CSS
+- Typescript, NextJS, Redux Toolkit, Tailwind CSS, Prisma, MongoDB
 
 ## Fonksiyonalite ve Ozellikler
 
