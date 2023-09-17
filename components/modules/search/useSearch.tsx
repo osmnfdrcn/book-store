@@ -12,7 +12,7 @@ const useSearch = () => {
   const router = useRouter();
   const { showSearchBar } = useSelector((store: RootState) => store.app);
   const [searchKey, setSearchKey] = useState("");
-  const debouncedSearchKey = useDebounce<string>(searchKey, 200);
+  const debouncedSearchKey = useDebounce<string>(searchKey, 100);
   const [books, setBooks] = useState<IBook[]>([]);
 
   const handleClose = () => {

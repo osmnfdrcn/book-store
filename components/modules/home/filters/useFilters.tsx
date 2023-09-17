@@ -65,7 +65,7 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
     handleFilterClick(e.target.value, setPublisherFilter);
   };
 
-  //filter-state'erinde tutulan id'lere gore API'ye yapilacak istek guncelleniyor.
+  //filter-state'erinde tutulan id'lere gore API'ye yapilacak istek
   let url = "?";
   useEffect(() => {
     !!authorFilter.length
@@ -87,7 +87,6 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
     setPublisherFilter([]);
     router.push("/");
   }, []);
-
   const handleSubmit = () => {
     setIsLoading(true);
     jump(1);
