@@ -23,12 +23,13 @@ export const useCart = () => {
 
     try {
       const res = await fetch(`/api/book/`, requestOptions);
-
       if (res.ok) {
         router.refresh();
+        toast.success("Satin Alma Islemi Gerceklesmistir");
+
         dispatch(reset());
       } else {
-        toast.error("HATA");
+        toast.error("Urun satin alinamadi! Guncel stogu kontrol eedin.");
       }
     } catch (err) {
       toast.error("HATA");
@@ -38,16 +39,8 @@ export const useCart = () => {
   };
 
   const handleUpdateStock = async () => {
-    setError(false);
-
     for (const item of items) {
       await updateStock(item.id, item.quantity);
-    }
-
-    if (!error) {
-      toast.success("Satin Alma Islemi Gerceklesmistir");
-    } else {
-      toast.error("Bir hata ile karsilasildi");
     }
   };
 
