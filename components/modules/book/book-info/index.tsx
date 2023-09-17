@@ -35,8 +35,11 @@ const BookInfo = ({ children, book }: Props) => {
             <p className="text-md text-slate-600 mb-2 ">
               {book?.publisher.name} / {book?.genre.name}
             </p>
-            <p className="text-2xl text-slate-800 font-bold mb-2 ">
-              {book?.price}TL / {book.stock} adet kaldi
+            <p className="text-2xl text-slate-800 font-bold ">
+              {book?.price}TL
+            </p>
+            <p className="text-lg text-slate-800 font-bold mb-4 ">
+              Stok adedi : {book.stock}
             </p>
             <p className="text-md text-slate-500 font-light text-justify">
               {book?.description}

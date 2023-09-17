@@ -27,7 +27,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <Search />
           <Navbar />
-          <div className="pb-20 pt-[120px]">{children}</div>
+          <div className="pb-20 pt-[100px]">{children}</div>
         </StateProvider>
       </body>
     </html>

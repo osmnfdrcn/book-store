@@ -23,18 +23,17 @@ const Header = ({
   itemsPerPage,
 }: Props) => {
   return (
-    <div className="font-semibold  flex gap-2 items-center justify-between w-full">
+    <div className="font-semibold  flex gap-2 items-center justify-between w-full bg-slate-100 p-2 mb-2">
       <div
         className="flex gap-2 items-center cursor-pointer w-[1/3]"
         onClick={() => setShowFilterBar(!showFilterBar)}
       >
-        <BsFilterLeft size={30} />{" "}
-        <span className="font-light text-xs">FILTRELER</span>
+        <BsFilterLeft size={30} /> <span className=" text-xs">FILTRELER</span>
       </div>
-      <div className="flex gap-2 w-[1/4] items-center ">
+      <div className="flex gap-4 w-[1/4] items-center ">
         <div className="flex gap-2 items-center ">
           <select
-            className="p-1 border text-sm text-slate-500"
+            className="p-2 border text-sm text-slate-500"
             name="books"
             id="books"
             onChange={(e: any) => setItemsPerPage(e.target.value)}

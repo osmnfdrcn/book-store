@@ -23,7 +23,7 @@ const FilterItem = ({
   calculateNumberOfItems,
 }: Props) => {
   return (
-    <div className="flex gap-1 flex-col bg-slate-50 max-h-[300px]">
+    <div className="flex gap-1 flex-col bg-slate-100 max-h-[300px]">
       <div
         className="text-center  text-xs cursor-pointer tracking-widest py-2  px-4 flex items-center justify-between"
         onClick={() => setShowItem(!showItem)}
@@ -48,7 +48,7 @@ const FilterItem = ({
                       id={g.name}
                       value={g.id}
                       checked={checked}
-                      onChange={(e) => onChange(e as any)}
+                      onChange={(e) => onChange(e)}
                     />
                     <label className="cursor-pointer" htmlFor={g.name}>
                       {g.name}{" "}

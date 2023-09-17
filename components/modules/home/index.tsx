@@ -1,5 +1,4 @@
 "use client";
-
 import usePagination from "@/hooks/usePagination";
 import Link from "next/link";
 import { useState } from "react";
@@ -21,12 +20,12 @@ const Home = ({ books }: Props) => {
   );
   const data = currentData();
 
-  if (!data?.length) {
-    return <NoResult title="Aradiginiz sayfa bulunamadi." />;
-  }
+  // if (!data?.length) {
+  //   return <NoResult title="Aradiginiz sayfa bulunamadi." />;
+  // }
 
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className="flex flex-col  ">
       <Header
         showFilterBar={showFilterBar}
         setShowFilterBar={setShowFilterBar}
@@ -42,11 +41,18 @@ const Home = ({ books }: Props) => {
         <Filters books={books} showFilterBar={showFilterBar} jump={jump} />
 
         <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5  gap-2 lg:gap-4 h-full ">
-          {data?.map((b) => (
-            <Link href={`/books/${b.slug}`} key={uuidv4()}>
-              <BookCard book={b} />
-            </Link>
-          ))}
+          {data.length ? (
+            data?.map((b) => (
+              <Link href={`/books/${b.slug}`} key={uuidv4()}>
+                <BookCard book={b} />
+              </Link>
+            ))
+          ) : (
+            <div className="w-full col-span-5">
+              {" "}
+              <NoResult title="Sonuc bulunamadi!" />
+            </div>
+          )}
         </div>
       </div>
     </div>
