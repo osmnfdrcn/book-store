@@ -7,6 +7,7 @@ const nextConfig = {
     domains: [
       "i.idefix.com",
       "i1.wp.com",
+      "wikimedia.org",
       "img-s3.onedio.com",
       "m.media-amazon.com",
       "nationalismstudies.files.wordpress.com",
