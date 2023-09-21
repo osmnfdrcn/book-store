@@ -1,6 +1,14 @@
+import {
+  reset,
+  setFilter,
+  setIsLoading,
+  setShowFilter,
+} from "@/store/slices/filterSlice";
+import { RootState } from "@/store/store";
 import { IAuthor, IBook, IGenre, ILanguage, IPublisher } from "@/types";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { sortArray, uniqueSet } from "./helpers";
 
 type FilterVariant = {
@@ -21,82 +29,51 @@ type ButtonVariant = {
 };
 
 // genre, author, publisher ve language filtre alanlarindan herhangi birinde yapilan secimlere gore diger alanlarin guncellenmesini gerceklestiriyor.
-
 const useFilters = (books: IBook[], jump: (v: number) => void) => {
-  const [genreFilter, setGenreFilter] = useState<string[]>([]);
-  const [publisherFilter, setPublisherFilter] = useState<string[]>([]);
-  const [authorFilter, setAuthorFilter] = useState<string[]>([]);
-  const [languageFilter, setLanguageFilter] = useState<string[]>([]);
-  const [showGenres, setShowGenres] = useState(true);
-  const [showAuthors, setShowAuthors] = useState(false);
-  const [showPublishers, setShowPublishers] = useState(false);
-  const [showLanguages, setShowLanguages] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
-
-  //filter state-lerinde secilen alanin id'leri tutuluyor
-  const handleFilterClick = useCallback(
-    (
-      value: string,
-      setState: React.Dispatch<React.SetStateAction<string[]>>
-    ) => {
-      setState((prev) => {
-        if (prev.includes(value)) {
-          return prev.filter((item) => item !== value);
-        } else {
-          return [...prev, value];
-        }
-      });
-    },
-    []
+  const dispatch = useDispatch();
+  const { showFilters, filters, isLoading } = useSelector(
+    (store: RootState) => store.filter
   );
 
-  const handleGenreClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFilterClick(e.target.value, setGenreFilter);
-  };
-  const handleAuthorClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFilterClick(e.target.value, setAuthorFilter);
-  };
-  const handleLanguageClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFilterClick(e.target.value, setLanguageFilter);
-  };
-  const handlePublisherClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleFilterClick(e.target.value, setPublisherFilter);
+  //filter state-lerinde secilen alanin id'leri tutuluyor
+  const handleFilterClick = (value: string, filter: string) => {
+    dispatch(setFilter({ filter, value }));
   };
 
   //filter-state'erinde tutulan id'lere gore API'ye yapilacak istek
   let url = "?";
   useEffect(() => {
-    !!authorFilter.length
-      ? (url += `authorId=${authorFilter.toString()}&`)
+    !!filters.author.length
+      ? (url += `authorId=${filters.author.toString()}&`)
       : null;
-    !!languageFilter.length
-      ? (url += `languageId=${languageFilter.toString()}&`)
+    !!filters.language.length
+      ? (url += `languageId=${filters.language.toString()}&`)
       : null;
-    !!genreFilter.length ? (url += `genreId=${genreFilter.toString()}&`) : null;
-    !!publisherFilter.length
-      ? (url += `publisherId=${publisherFilter.toString()}&`)
+    !!filters.genre.length
+      ? (url += `genreId=${filters.genre.toString()}&`)
       : null;
-  }, [genreFilter, authorFilter, languageFilter, publisherFilter]);
+    !!filters.publisher.length
+      ? (url += `publisherId=${filters.publisher.toString()}&`)
+      : null;
+  }, [filters]);
 
-  const handleClearFilter = useCallback(() => {
-    setGenreFilter([]);
-    setAuthorFilter([]);
-    setLanguageFilter([]);
-    setPublisherFilter([]);
+  const handleClearFilter = () => {
+    dispatch(reset());
     router.push("/");
-  }, []);
+  };
+
   const handleSubmit = () => {
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
     jump(1);
     router.push(url);
-    setIsLoading(false);
+    dispatch(setIsLoading(false));
   };
 
   const calculateNumberOfItems = (type: string, id: string) => {
     return books.filter((b: IBook) => b[type] == id).length;
   };
+
   // filtrelenecek her alan  icin unique elemanlari olan bir dizi donuluyor.
   const genres = uniqueSet(books?.map((b: { genre: IGenre }) => b.genre));
   const authors = uniqueSet(books?.map((b: { author: IAuthor }) => b.author));
@@ -110,38 +87,42 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
   const filtersVariants: FilterVariant[] = [
     {
       name: "TUR",
-      setShowItem: setShowGenres,
-      showItem: showGenres,
+      setShowItem: (action: boolean) =>
+        dispatch(setShowFilter({ filter: "genre", action })),
+      showItem: showFilters.genre,
       data: sortArray(genres),
-      itemFilter: genreFilter,
-      onChange: handleGenreClick,
+      itemFilter: filters.genre,
+      onChange: (e) => handleFilterClick(e.target.value, "genre"),
       itemType: "genreId",
     },
     {
       name: "YAYIMCI",
-      setShowItem: setShowPublishers,
-      showItem: showPublishers,
+      setShowItem: (action: boolean) =>
+        dispatch(setShowFilter({ filter: "publisher", action })),
+      showItem: showFilters.publisher,
       data: sortArray(publishers),
-      itemFilter: publisherFilter,
-      onChange: handlePublisherClick,
+      itemFilter: filters.publisher,
+      onChange: (e) => handleFilterClick(e.target.value, "publisher"),
       itemType: "publisherId",
     },
     {
       name: "YAZAR",
-      setShowItem: setShowAuthors,
-      showItem: showAuthors,
+      setShowItem: (action: boolean) =>
+        dispatch(setShowFilter({ filter: "author", action })),
+      showItem: showFilters.author,
       data: sortArray(authors),
-      itemFilter: authorFilter,
-      onChange: handleAuthorClick,
+      itemFilter: filters.author,
+      onChange: (e) => handleFilterClick(e.target.value, "author"),
       itemType: "authorId",
     },
     {
       name: "DIL",
-      setShowItem: setShowLanguages,
-      showItem: showLanguages,
+      setShowItem: (action: boolean) =>
+        dispatch(setShowFilter({ filter: "language", action })),
+      showItem: showFilters.language,
       data: sortArray(languages),
-      itemFilter: languageFilter,
-      onChange: handleLanguageClick,
+      itemFilter: filters.language,
+      onChange: (e) => handleFilterClick(e.target.value, "language"),
       itemType: "languageId",
     },
   ];
