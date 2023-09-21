@@ -21,8 +21,8 @@ const initialState: CartState = {
   items: [],
 };
 
-const appSlice = createSlice({
-  name: "app",
+const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {
     setShowCart: (state: CartState, { payload }: PayloadAction<boolean>) => {
@@ -66,5 +66,5 @@ const appSlice = createSlice({
   },
 });
 
-export const { setShowCart, addToCart, updateCart, reset } = appSlice.actions;
-export default appSlice.reducer;
+export const { setShowCart, addToCart, updateCart, reset } = cartSlice.actions;
+export default cartSlice.reducer;
