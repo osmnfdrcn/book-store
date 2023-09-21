@@ -1,4 +1,4 @@
-import { Book, Author, Publisher, Genre, Language, User } from "@prisma/client";
+import { Book, Author, Publisher, Genre, Language } from "@prisma/client";
 
 export type IBook = Omit<Book, "createdAt"> & {
   createdAt: string;
@@ -30,12 +30,6 @@ export type IGenre = Omit<Genre, "createdAt"> & {
 };
 
 export type CommonType = Omit<Author, "slug">;
-
-export type IUser = Omit<User, "createdAt" | "updatedAt" | "emailVerified"> & {
-  createdAt: string;
-  updatedAt: string;
-  emailVerified: string | null;
-};
 
 export type CartItem = {
   id: string;
