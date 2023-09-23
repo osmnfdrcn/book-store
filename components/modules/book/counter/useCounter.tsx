@@ -4,7 +4,7 @@ import { IBook } from "@/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const useCounter = (book: IBook) => {
+const useCounter = (book: any) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useAppDispatch();
   const { items } = useAppSelector((store: RootState) => store.cart);
