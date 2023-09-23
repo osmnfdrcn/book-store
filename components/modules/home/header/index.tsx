@@ -28,7 +28,8 @@ const Header = ({
         className="flex gap-2 items-center cursor-pointer w-[1/3]"
         onClick={() => setShowFilterBar(!showFilterBar)}
       >
-        <BsFilterLeft size={30} /> <span className=" text-xs">FILTRELER</span>
+        <BsFilterLeft size={30} />
+        <p className=" text-xs">FILTRELER</p>
       </div>
       <div className="flex gap-4 w-[1/4] items-center ">
         <div className="flex gap-2 items-center ">

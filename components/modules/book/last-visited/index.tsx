@@ -17,7 +17,10 @@ const LastVisitedBooks = ({ id, title, image, slug }: Props) => {
   return (
     <div className="w-full mt-8">
       <Title text="SON ZIYARET EDILENLER" />
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  items-center justify-center gap-4 ">
+      <div
+        className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  items-center justify-center gap-4 "
+        data-testid="book-list"
+      >
         {lastVisited?.map((l) => (
           <Link href={`books/${l.slug}`} key={l.id}>
             <Image src={l.image} width={100} height={165} alt={l.title} />

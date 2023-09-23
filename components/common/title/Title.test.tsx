@@ -1,9 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/utils/test-utils/render";
 import Title from ".";
 
 describe("Title", () => {
-  // Renders a div with a p tag containing the text passed as a prop
-  it("should render a div with a p tag containing the specified text", () => {
+  test("should render a div with a p tag containing the specified text", () => {
     const props = {
       text: "Hakkimizda",
     };

@@ -1,6 +1,5 @@
 interface WrapperProps {
   children: React.ReactNode;
-  noCategories?: boolean;
 }
 
 const Wrapper = ({ children }: WrapperProps) => {
