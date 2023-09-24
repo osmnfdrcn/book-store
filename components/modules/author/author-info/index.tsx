@@ -18,7 +18,7 @@ const AuthorInfo = ({ author }: Props) => {
           placeholder="blur"
           blurDataURL={author.image!}
         />
-        <p className=" text-slate-500 font-light text-justify px-4">
+        <p className=" text-slate-500 dark:text-slate-300 font-light text-justify px-4">
           {author.bio}
         </p>
       </div>

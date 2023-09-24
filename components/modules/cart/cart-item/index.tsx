@@ -14,13 +14,11 @@ const CartItem = ({ item }: Props) => {
     dispatch(updateCart({ id, action }));
   return (
     <div className="flex items-center justify-between mb-2 md:mb-4">
-      <div className="flex items-center justify-start gap-2">
+      <div className="flex items-center justify-start gap-2 text-slate-800 dark:text-slate-300">
         <Image src={item.image} width={60} height={60} alt={item.title} />
         <div className="flex flex-col ">
-          <span className="text-sm text-slate-700 font-semibold ">
-            {item.title}
-          </span>
-          <span className="text-sm text-slate-700 font-extrabold">
+          <span className="text-sm  font-semibold ">{item.title}</span>
+          <span className="text-sm font-extrabold">
             {item.price * item.quantity}TL
           </span>
         </div>

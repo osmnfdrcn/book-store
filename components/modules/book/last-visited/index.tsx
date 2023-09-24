@@ -15,7 +15,7 @@ const LastVisitedBooks = ({ id, title, image, slug }: Props) => {
   const { lastVisited } = useLastVisited({ id, title, image, slug });
 
   return (
-    <div className="w-full mt-8">
+    <div className="w-full mt-8 ">
       <Title text="SON ZIYARET EDILENLER" />
       <div
         className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6  items-center justify-center gap-4 "

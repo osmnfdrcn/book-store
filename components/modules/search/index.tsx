@@ -27,7 +27,7 @@ const Search = () => {
                 setSearchKey(e.target.value)
               }
               value={searchKey}
-              className="px-2 py-4 rounded-lg  w-full text-sm text-slate-600 outline-none focus:border-rose-300"
+              className="px-2 py-4 rounded-lg  w-full text-sm text-slate-800 outline-none focus:border-rose-300 bg-white"
               placeholder="Bir kitap ya da yazar adi giriniz..."
               autoFocus
             />
@@ -58,11 +58,11 @@ const Search = () => {
                         height={30}
                         alt={b?.title || b.name}
                       />
-                      <p className=" text-xs md:text-sm text-slate-500 px-2">
+                      <p className=" text-xs md:text-sm text-slate-800 px-2">
                         {b?.title || b.name}
                       </p>
                     </div>
-                    <p className=" text-xs md:text-sm text-slate-500 px-2 float-right">
+                    <p className=" text-xs md:text-sm text-slate-800 px-2 float-right">
                       {b?.title ? b.genre?.name : "Yazar"}
                     </p>
                   </div>

@@ -29,7 +29,7 @@ const Cart = () => {
         <div className="mt-5 flex flex-col items-center justify-end gap-2 w-full">
           <Button
             onClick={handleClearCart}
-            className="w-full bg-rose-500 hover:bg-rose-600 transition duration-100 font-bold text-white py-1"
+            className="w-full bg-rose-500 hover:bg-rose-600 transition duration-100 font-bold text-white py-1 dark:border dark:border-white"
             loading={isLoading}
           >
             {" "}
@@ -38,7 +38,7 @@ const Cart = () => {
           <Button
             onClick={handleUpdateStock}
             variant="primary"
-            className="w-full bg-slate-800 hover:bg-slate-800/80 transition duration-100s font-bold text-white py-1"
+            className="w-full bg-slate-800 hover:bg-slate-800/80 transition duration-100s font-bold text-white py-1 dark:border dark:border-white"
             loading={isLoading}
           >
             ALISVERISI TAMAMLA
