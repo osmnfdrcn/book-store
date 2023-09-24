@@ -23,7 +23,7 @@ const Header = ({
   itemsPerPage,
 }: Props) => {
   return (
-    <div className="font-semibold  flex gap-2 items-center justify-between w-full bg-slate-100 p-2 mb-2">
+    <div className="font-semibold  flex gap-2 items-center justify-between w-full bg-slate-100 p-2 mb-2 dark:bg-slate-800">
       <div
         className="flex gap-2 items-center cursor-pointer w-[1/3]"
         onClick={() => setShowFilterBar(!showFilterBar)}
@@ -34,7 +34,7 @@ const Header = ({
       <div className="flex gap-4 w-[1/4] items-center ">
         <div className="flex gap-2 items-center ">
           <select
-            className="p-2 border text-sm text-slate-500"
+            className="p-2 border text-sm text-slate-500 dark:bg-slate-700 dark:text-white"
             name="books"
             id="books"
             onChange={(e: any) => setItemsPerPage(e.target.value)}
@@ -48,12 +48,12 @@ const Header = ({
           <Button
             onClick={() => prev()}
             disabled={currentPage === 1}
-            className="w-8 h-8 rounded-full bg-slate-200 text-slate-800 font-bold p-2 hover:bg-slate-300 duration-100 transition"
+            className="w-8 h-8 rounded-full bg-slate-200 text-slate-800 font-bold p-2 hover:bg-slate-300  duration-100 transition"
           >
             <GrPrevious />
           </Button>
 
-          <span className="text-xs font-light ">
+          <span className="text-sm font-light ">
             {currentPage} / {maxPage}
           </span>
           <Button

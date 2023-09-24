@@ -9,7 +9,9 @@ const Title = ({ text }: Props) => {
       test-id="title div"
       data-testid="title-wrapper"
     >
-      <p className="text-lg text-slate-500 font-extralight">{text}</p>
+      <p className="text-lg text-slate-500 dark:text-slate-300 font-extralight">
+        {text}
+      </p>
     </div>
   );
 };

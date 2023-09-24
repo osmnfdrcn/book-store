@@ -40,7 +40,7 @@ const Counter = ({ book }: Props) => {
       </div>
       <Button
         onClick={handleAddToCart}
-        className="bg-slate-800 hover:bg-slate-600 duration-100 transition  text-white px-2 py-2 text-sm font-semibold"
+        className="bg-slate-800 hover:bg-slate-600 duration-100 transition  text-white px-2 py-2 text-sm font-semibold dark:border dark:border-white"
       >
         SEPETE EKLE
       </Button>

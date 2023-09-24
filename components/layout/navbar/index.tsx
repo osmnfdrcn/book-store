@@ -4,7 +4,7 @@ import Logo from "./logo";
 
 const Navbar = () => {
   return (
-    <div className="fixed z-20 w-full h-[90px]  bg-slate-100 ">
+    <div className="fixed z-20 w-full h-[90px] dark:bg-slate-800 dark:text-white   bg-slate-100 ">
       <Wrapper>
         <div className="flex items-center justify-between h-full ">
           <Logo />

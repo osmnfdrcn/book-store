@@ -17,11 +17,11 @@ const Filters = ({ books, jump, showFilterBar }: Props) => {
     <div
       className={` ${
         showFilterBar
-          ? "block absolute z-10 top-[48px] lg:top-[125px] h-auto left-0 w-full lg:hidden bg-white "
+          ? "block absolute z-10 top-[48px] lg:top-[125px] h-auto left-0 w-full lg:hidden  dark:bg-slate-800 bg-slate-100 "
           : "hidden lg:block lg:static"
       } pb-8`}
     >
-      <div className="  px-4 sm:px-7  md:px-10 lg:px-0 h-full lg:w-[300px] flex flex-col gap-1">
+      <div className="  px-4 sm:px-7  md:px-10 lg:px-0 h-full lg:w-[300px] flex flex-col ">
         {filtersVariants.map((v) => (
           <FilterItem
             key={uuidv4()}

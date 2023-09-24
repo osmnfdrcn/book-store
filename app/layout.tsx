@@ -4,6 +4,7 @@ import { StateProvider } from "@/providers/StateProvider";
 import ToasterProvider from "@/providers/ToasterProvider";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ThemeProvider from "@/providers/ThemeProvider";
 
 const inter = Inter({
   weight: "400",
@@ -23,12 +24,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StateProvider>
-          <ToasterProvider />
-          <Search />
-          <Navbar />
-          <div className="pb-20 pt-[100px]">{children}</div>
-        </StateProvider>
+        <ThemeProvider>
+          <StateProvider>
+            <ToasterProvider />
+            <Search />
+            <Navbar />
+            <div className="pb-20 pt-[100px] dark:bg-slate-900 dark:text-white min-h-screen">
+              {children}
+            </div>
+          </StateProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

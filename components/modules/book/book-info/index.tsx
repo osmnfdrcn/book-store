@@ -10,7 +10,7 @@ type Props = {
 const BookInfo = ({ children, book }: Props) => {
   return (
     <>
-      <div className="flex flex-col items-center justify-start  w-full sm:w-2/3 mx-auto mt-[45px] pt-2 gap-4">
+      <div className="flex flex-col items-center justify-start  w-full sm:w-2/3 mx-auto mt-[45px] pt-2 gap-4 dark:text-slate-300 text-slate-800 ">
         <div className="relative aspect-square w-full h-[350px]   overflow-hidden">
           <Image
             src={book?.image!}
@@ -21,7 +21,7 @@ const BookInfo = ({ children, book }: Props) => {
         </div>
         <div className=" flex justify-between  w-full">
           <div className=" flex flex-col items-center px-4">
-            <p className="text-xl text-slate-800 font-semibold">
+            <p className="text-xl font-semibold">
               {book?.title} /{" "}
               <Link
                 href={`/authors/${book?.author.slug}`}
@@ -32,16 +32,14 @@ const BookInfo = ({ children, book }: Props) => {
                 {book?.author.name}
               </Link>
             </p>
-            <p className="text-md text-slate-600 mb-2 ">
+            <p className="text-md mb-2 ">
               {book?.publisher.name} / {book?.genre.name}
             </p>
-            <p className="text-2xl text-slate-800 font-bold ">
-              {book?.price}TL
-            </p>
-            <p className="text-lg text-slate-800 font-bold mb-4 ">
+            <p className="text-2xl font-bold ">{book?.price}TL</p>
+            <p className="text-lg  font-bold mb-4 ">
               Stok adedi : {book.stock}
             </p>
-            <p className="text-md text-slate-500 font-light text-justify">
+            <p className="text-md  font-light text-justify">
               {book?.description}
             </p>
           </div>

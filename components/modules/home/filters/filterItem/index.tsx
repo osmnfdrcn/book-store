@@ -23,15 +23,15 @@ const FilterItem = ({
   calculateNumberOfItems,
 }: Props) => {
   return (
-    <div className="flex gap-1 flex-col bg-slate-100 max-h-[300px]">
+    <div className="flex flex-col bg-slate-100 dark:bg-slate-800  max-h-[300px]">
       <div
-        className="text-center  text-xs cursor-pointer tracking-widest py-2  px-4 flex items-center justify-between"
+        className="text-center  text-xs cursor-pointer tracking-widest py-2  px-4 flex items-center justify-between dark:bg-slate-800/80 dark:text-white"
         onClick={() => setShowItem(!showItem)}
       >
-        <span>{name}</span>
+        <span className="">{name}</span>
         {showItem ? <AiOutlineUp /> : <AiOutlineDown />}
       </div>
-      <div className="overflow-y-scroll">
+      <div className="overflow-y-scroll dark:bg-slate-700/80">
         {showItem ? (
           <>
             {data?.map((g: IGenre) => {
@@ -39,10 +39,10 @@ const FilterItem = ({
 
               return (
                 <div
-                  className="flex items-center justify-between gap-3 bg-white py-1 px-4 text-sm font-light text-slate-500 "
+                  className="flex items-center justify-between gap-3  bg-white py-1 px-4 text-sm font-light text-slate-500 dark:bg-slate-700/60 dark:text-white "
                   key={g.id}
                 >
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 ">
                     <input
                       type="checkbox"
                       id={g.name}

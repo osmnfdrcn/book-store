@@ -133,14 +133,14 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
       onClick: handleSubmit,
       text: "ARA",
       style:
-        "w-full bg-rose-500 hover:bg-rose-600 transition duration-100 font-bold text-white py-1",
+        "w-full bg-rose-500 hover:bg-rose-600 transition duration-100 font-bold text-white py-1 dark:border dark:border-white",
     },
     {
       id: 1,
       onClick: handleClearFilter,
       text: "SECIMLERI TEMIZLE",
       style:
-        "w-full bg-slate-800 hover:bg-slate-700 transition duration-100s font-bold text-white py-1",
+        "w-full bg-slate-800 hover:bg-slate-700 transition duration-100s font-bold text-white py-1 dark:border dark:border-white",
     },
   ];
   return { filtersVariants, buttonVariants, calculateNumberOfItems, isLoading };
