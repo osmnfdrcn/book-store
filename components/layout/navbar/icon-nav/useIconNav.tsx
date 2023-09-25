@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setShowSearchBar } from "@/store/slices/appSlice";
-import { setShowCart } from "@/store/slices/cartSlice";
+import { Item, setShowCart } from "@/store/slices/cartSlice";
 import { RootState } from "@/store/store";
+import { useMemo } from "react";
 
 const useIconNav = () => {
   const dispatch = useAppDispatch();
@@ -15,10 +16,12 @@ const useIconNav = () => {
     dispatch(setShowCart(!showCart));
   };
 
-  const numberOfCartItems = items?.reduce(
-    (total: number, item: any) => total + item.quantity,
-    0
-  );
+  const numberOfCartItems = useMemo(() => {
+    return items.reduce(
+      (total: number, item: Item) => total + item.quantity,
+      0
+    );
+  }, [items]);
 
   return {
     handleSearchClick,
