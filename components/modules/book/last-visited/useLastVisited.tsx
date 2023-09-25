@@ -12,27 +12,21 @@ const useLastVisited = ({ id, title, image, slug }: LastVisited) => {
       .get("lastVisited")
       ?.filter((b: LastVisited) => b.id !== id);
 
-    let expires = new Date();
-    // One week after every update
+    const expires = new Date();
     expires.setTime(expires.getTime() + 86400 * 1000);
 
-    if (!!existingLastVisited && existingLastVisited.length > 0) {
-      cookies.set(
-        "lastVisited",
-        [{ id, title, image, slug }, ...existingLastVisited],
-        {
-          path: "/",
-          expires,
-        }
-      );
-    } else {
-      cookies.set("lastVisited", [{ id, title, image, slug }], {
+    cookies.set(
+      "lastVisited",
+      [{ id, title, image, slug }, ...(existingLastVisited || [])],
+      {
         path: "/",
         expires,
-      });
-    }
-    setLastVisited(existingLastVisited);
+      }
+    );
+
+    setLastVisited(existingLastVisited || []);
   }, []);
+
   return { lastVisited };
 };
 
