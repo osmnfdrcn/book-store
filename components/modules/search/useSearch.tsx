@@ -40,8 +40,10 @@ const useSearch = () => {
       }
     };
 
-    if (searchKey) {
+    if (debouncedSearchKey) {
       fetchData();
+    } else {
+      setBooks([]);
     }
   }, [debouncedSearchKey]);
 
