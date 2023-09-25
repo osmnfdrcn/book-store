@@ -9,7 +9,7 @@ const IconNav = () => {
   const { handleSearchClick, handleShowCartMenu, numberOfCartItems } =
     useIconNav();
   return (
-    <div className="h-full flex items-center justify-between gap-4">
+    <div className="relative h-full flex items-center justify-between gap-4">
       <ThemeSwitcher />
       <div
         className="dark:text-white  text-slate-600 font-bold cursor-pointer hover:scale-110 transition"

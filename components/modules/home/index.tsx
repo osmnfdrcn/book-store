@@ -20,10 +20,6 @@ const Home = ({ books }: Props) => {
   );
   const data = currentData();
 
-  // if (!data?.length) {
-  //   return <NoResult title="Aradiginiz sayfa bulunamadi." />;
-  // }
-
   return (
     <div className="flex flex-col  ">
       <Header
