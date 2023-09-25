@@ -29,7 +29,7 @@ export default async function RootLayout({
             <ToasterProvider />
             <Search />
             <Navbar />
-            <div className="pt-[100px] dark:bg-slate-900 dark:text-white min-h-screen">
+            <div className="py-[100px] dark:bg-slate-900 dark:text-white min-h-screen">
               {children}
             </div>
           </StateProvider>
