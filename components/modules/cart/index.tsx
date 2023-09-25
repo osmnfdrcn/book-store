@@ -1,19 +1,19 @@
 "use client";
-import { v4 as uuidv4 } from "uuid";
 import NoResult from "@/components/common/noResult";
 import Title from "@/components/common/title";
 import Wrapper from "@/components/layout/wrapper";
 import Button from "@/components/ui/button";
-import { Item, reset } from "@/store/slices/cartSlice";
-import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
+import { Item } from "@/store/slices/cartSlice";
+import { v4 as uuidv4 } from "uuid";
 import CartItem from "./cart-item";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import useCart from "./useCart";
 
 const Cart = () => {
   const { items, handleClearCart, handleUpdateStock, isLoading } = useCart();
+  const total = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   if (!items.length) {
     return <NoResult title="Sepetinizde urun yoktur!" />;
@@ -26,6 +26,10 @@ const Cart = () => {
         {items.map((i: Item) => (
           <CartItem key={uuidv4()} item={i} />
         ))}
+        <div className="flex justify-end items-center my-4 font-semibold text-xl">
+          {" "}
+          <p className="">{total} TL</p>
+        </div>
         <div className="mt-5 flex flex-col items-center justify-end gap-2 w-full">
           <Button
             onClick={handleClearCart}

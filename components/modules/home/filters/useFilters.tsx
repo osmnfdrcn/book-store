@@ -11,11 +11,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortArray, uniqueSet } from "./helpers";
 
-type FilterVariant = {
+type FilterVariant<T> = {
   name: string;
   setShowItem: (v: boolean) => void;
   showItem: boolean;
-  data: IGenre[] | IAuthor[] | IPublisher[] | ILanguage[];
+  data: T[];
   itemFilter: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   itemType: string;
@@ -44,18 +44,12 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
   //filter-state'erinde tutulan id'lere gore API'ye yapilacak istek
   let url = "?";
   useEffect(() => {
-    !!filters.author.length
-      ? (url += `authorId=${filters.author.toString()}&`)
-      : null;
-    !!filters.language.length
-      ? (url += `languageId=${filters.language.toString()}&`)
-      : null;
-    !!filters.genre.length
-      ? (url += `genreId=${filters.genre.toString()}&`)
-      : null;
-    !!filters.publisher.length
-      ? (url += `publisherId=${filters.publisher.toString()}&`)
-      : null;
+    const filterKeys = ["author", "language", "genre", "publisher"];
+    filterKeys.forEach((key) => {
+      if (filters[key].length) {
+        url += `${key}Id=${filters[key].toString()}&`;
+      }
+    });
   }, [filters]);
 
   const handleClearFilter = () => {
@@ -74,6 +68,26 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
     return books.filter((b: IBook) => b[type] == id).length;
   };
 
+  const createFilterVariant = <T extends { id: string; name: string }>(
+    name: string,
+    filterKey: keyof typeof filters, //genre, author, publisher, language
+    data: T[],
+    itemType: string
+  ): FilterVariant<T>[] => {
+    return [
+      {
+        name,
+        setShowItem: (action: boolean) =>
+          dispatch(setShowFilter({ filter: filterKey as string, action })),
+        showItem: showFilters[filterKey],
+        data: sortArray(data),
+        itemFilter: filters[filterKey],
+        onChange: (e) => handleFilterClick(e.target.value, filterKey as string),
+        itemType,
+      },
+    ];
+  };
+
   // filtrelenecek her alan  icin unique elemanlari olan bir dizi donuluyor.
   const genres = uniqueSet(books?.map((b: { genre: IGenre }) => b.genre));
   const authors = uniqueSet(books?.map((b: { author: IAuthor }) => b.author));
@@ -84,47 +98,11 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
     books?.map((b: { language: ILanguage }) => b.language)
   );
 
-  const filtersVariants: FilterVariant[] = [
-    {
-      name: "TUR",
-      setShowItem: (action: boolean) =>
-        dispatch(setShowFilter({ filter: "genre", action })),
-      showItem: showFilters.genre,
-      data: sortArray(genres),
-      itemFilter: filters.genre,
-      onChange: (e) => handleFilterClick(e.target.value, "genre"),
-      itemType: "genreId",
-    },
-    {
-      name: "YAYIMCI",
-      setShowItem: (action: boolean) =>
-        dispatch(setShowFilter({ filter: "publisher", action })),
-      showItem: showFilters.publisher,
-      data: sortArray(publishers),
-      itemFilter: filters.publisher,
-      onChange: (e) => handleFilterClick(e.target.value, "publisher"),
-      itemType: "publisherId",
-    },
-    {
-      name: "YAZAR",
-      setShowItem: (action: boolean) =>
-        dispatch(setShowFilter({ filter: "author", action })),
-      showItem: showFilters.author,
-      data: sortArray(authors),
-      itemFilter: filters.author,
-      onChange: (e) => handleFilterClick(e.target.value, "author"),
-      itemType: "authorId",
-    },
-    {
-      name: "DIL",
-      setShowItem: (action: boolean) =>
-        dispatch(setShowFilter({ filter: "language", action })),
-      showItem: showFilters.language,
-      data: sortArray(languages),
-      itemFilter: filters.language,
-      onChange: (e) => handleFilterClick(e.target.value, "language"),
-      itemType: "languageId",
-    },
+  const filtersVariants: FilterVariant<any>[] = [
+    ...createFilterVariant("TUR", "genre", genres, "genreId"),
+    ...createFilterVariant("YAYIMCI", "publisher", publishers, "publisherId"),
+    ...createFilterVariant("YAZAR", "author", authors, "authorId"),
+    ...createFilterVariant("DIL", "language", languages, "languageId"),
   ];
 
   const buttonVariants: ButtonVariant[] = [
@@ -143,6 +121,7 @@ const useFilters = (books: IBook[], jump: (v: number) => void) => {
         "w-full bg-slate-800 hover:bg-slate-700 transition duration-100s font-bold text-white py-1 dark:border dark:border-white",
     },
   ];
+
   return { filtersVariants, buttonVariants, calculateNumberOfItems, isLoading };
 };
 

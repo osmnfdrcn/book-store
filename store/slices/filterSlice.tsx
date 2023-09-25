@@ -17,6 +17,7 @@ export type FilterState = {
     publisher: string[];
   };
   isLoading: boolean;
+  showFilterBar: boolean;
 };
 
 const initialState: FilterState = {
@@ -33,6 +34,7 @@ const initialState: FilterState = {
     publisher: [],
   },
   isLoading: false,
+  showFilterBar: false,
 };
 
 const filterSlice = createSlice({
@@ -63,9 +65,20 @@ const filterSlice = createSlice({
       state.isLoading = payload;
     },
     reset: (state: FilterState) => (state = initialState),
+    setShowFilterBar: (
+      state: FilterState,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.showFilterBar = payload;
+    },
   },
 });
 
-export const { setShowFilter, setFilter, setIsLoading, reset } =
-  filterSlice.actions;
+export const {
+  setShowFilter,
+  setShowFilterBar,
+  setFilter,
+  setIsLoading,
+  reset,
+} = filterSlice.actions;
 export default filterSlice.reducer;

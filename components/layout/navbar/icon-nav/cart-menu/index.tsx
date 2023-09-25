@@ -4,14 +4,16 @@ import Button from "@/components/ui/button";
 import { CartItem } from "@/types";
 import Image from "next/image";
 import useCartMenu from "./useCartMenu";
+import { usePortal } from "@/hooks/usePortal";
 
 const CartMenu = () => {
   const { showCart, total, handleCartClick, items, ref } = useCartMenu();
+
   if (!showCart) {
     return null;
   }
   return (
-    <div className="w-[280px]  xs:w-[355px]  max-h-[550px] dark:bg-slate-800 dark:text-white bg-slate-100 border p-4 absolute z-50 right-0 top-[63px]  overflow-y-scroll">
+    <div className="w-[280px]  xs:w-[355px]  max-h-[550px] dark:bg-slate-800 dark:text-white bg-slate-100 dark:border dark:border-white p-4 absolute z-50 right-0 top-[65px]  overflow-y-scroll">
       <div
         className="w-full  mt-2 flex items-center justify-between "
         ref={ref}
