@@ -8,7 +8,7 @@ type Props = {
 const AuthorInfo = ({ author }: Props) => {
   return (
     <div className=" w-full  ">
-      <Title text={author.name} />
+      <Title text={author.name.toLocaleUpperCase()} />
       <div className="flex flex-col  justify-center items-center gap-2 ">
         <Image
           src={author.image!}
