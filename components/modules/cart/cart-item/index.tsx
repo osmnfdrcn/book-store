@@ -12,6 +12,7 @@ const CartItem = ({ item }: Props) => {
   const dispatch = useAppDispatch();
   const handleQuantityChange = (id: string, action: "increase" | "decrease") =>
     dispatch(updateCart({ id, action }));
+
   return (
     <div className="flex items-center justify-between mb-2 md:mb-4">
       <div className="flex items-center justify-start gap-2 text-slate-800 dark:text-slate-300">
@@ -31,9 +32,11 @@ const CartItem = ({ item }: Props) => {
         >
           <AiOutlineMinus size={20} />
         </Button>
-        <div className="text-lg font-bold w-[20px] px-2 flex justify-center ">
+
+        <p className="text-lg font-bold w-[20px] px-2 flex justify-center ">
           {item.quantity}
-        </div>
+        </p>
+
         <Button
           disabled={item.quantity === item.stock}
           onClick={() => handleQuantityChange(item.id, "increase")}

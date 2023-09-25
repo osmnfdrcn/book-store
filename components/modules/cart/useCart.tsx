@@ -8,9 +8,7 @@ export const useCart = () => {
   const { items } = useAppSelector((store: RootState) => store.cart);
   const dispatch = useAppDispatch();
   const router = useRouter();
-
   const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const updateStock = async (id: string, quantity: number) => {
     setLoading(true);
@@ -47,8 +45,12 @@ export const useCart = () => {
   const handleClearCart = () => {
     dispatch(reset());
   };
+  const total = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
-  return { items, handleClearCart, handleUpdateStock, isLoading };
+  return { items, handleClearCart, handleUpdateStock, isLoading, total };
 };
 
 export default useCart;
